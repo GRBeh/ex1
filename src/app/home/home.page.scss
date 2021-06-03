@@ -13,10 +13,12 @@
   line-height: 26px;
 }
 
-.divider{
-  width:5px;
-  height:auto;
-  display:inline-block;
+.is-grouped {   
+  display: inline-block;
+}
+
+.is-grouped > .button:not(:last-child) {
+  margin-right: 10px;
 }
 
 #container p {
@@ -31,7 +33,7 @@
   text-decoration: none;
 }
 
-ion-card{
+h2,ion-card{
   text-align: Left;
   text-transform: capitalize;
 }

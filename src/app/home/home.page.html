@@ -6,44 +6,19 @@
   </ion-toolbar>
 </ion-header>
 
-
 <ion-content id="catalog" [fullscreen]="true">
-
-  <!-- <ion-card>    
-   <p id = "name"></p>
-   <p id = "sprite"></p>
-   <p id = "moves"></p> 
-  </ion-card>   -->
-
-
-
-  <!-- <ion-card *ngFor="let details of detailsList; index as i">
-    
-    
-    <ion-avatar item-start >
-      <img src="{{details.sprites.front_default }}">
-    </ion-avatar>
-    <h2>
-      {{i+1}}/{{detailsList.length}}. {{details.name}}
-    </h2>
-      <ion-card-content *ngFor="let moves of details.moves; index as i">
-        {{moves.move.name}}
-      </ion-card-content>
-  </ion-card> -->
-
   <ion-list *ngFor="let details of detailsList; index as i">
     <ion-item>
       <ion-thumbnail item-start>
-        <img src="{{details.sprites.front_default }}">
+        <img src="{{details.sprites.front_default}}">
       </ion-thumbnail>
       <h2> {{i+1}}/{{detailsList.length}}. {{details.name}}</h2>
-
-      
-
     </ion-item>
-    <button *ngFor="let moves of details.moves; index as i">
-      {{i+1}}.{{moves.move.name}}
-    </button>
-  </ion-list>
 
+    <div class='is-grouped'>
+      <button class='button' *ngFor="let moves of details.moves; index as i">
+        {{i+1}}.{{moves.move.name}}
+      </button>
+    </div>
+  </ion-list>
 </ion-content>
