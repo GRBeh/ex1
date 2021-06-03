@@ -10,19 +10,25 @@ import { DataService } from "../service/data.service"
 })
 export class HomePage implements OnInit {
 
-pokemons : Object
-detailsList : any
+detailsList =[]
 
-  constructor(private dataService: DataService) { }
-  ngOnInit() {
-    this.dataService.getAll().subscribe(response => { 
-      this.pokemons = response.results;
-      this.detailsList = [];
-       response.results.forEach(pokemon => {
-       this.dataService.getRemoteData(pokemon.url).subscribe(details =>{
-        this.detailsList.push(details);
-       });
-      }); 
-    }); 
+  constructor(private dataService: DataService) {
+    this.getAll();
+   }
+  ngOnInit() { }
+
+  getAll(){
+    this.dataService.getAll().subscribe( response => { 
+     this.getById(response)
+   }); 
   }
+  
+  getById(response){
+    response.results.forEach(pokemon => {
+      this.dataService.getById(pokemon.url).subscribe(details =>{
+       this.detailsList.push(details);
+      });
+     }); 
+  }
+  
 }

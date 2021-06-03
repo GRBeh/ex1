@@ -10,7 +10,7 @@ export class DataService {
 
   constructor(private http: HttpClient) { }
 
-  getRemoteData(url){
+  getById(url){
     return this.http
     .get(url)
     .pipe(
