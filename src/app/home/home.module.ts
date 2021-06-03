@@ -7,12 +7,16 @@ import { HomePage } from './home.page';
 import { HomePageRoutingModule } from './home-routing.module';
 
 
+import { MatExpansionModule } from '@angular/material/expansion';
+
+
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    HomePageRoutingModule
+    HomePageRoutingModule,
+    MatExpansionModule
   ],
   declarations: [HomePage]
 })
