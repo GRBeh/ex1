@@ -17,6 +17,11 @@
   display: inline-block;
 }
 
+.is-centered{
+  text-align : center;
+}
+
+
 .is-grouped > .button:not(:last-child) {
   margin-right: 10px;
 }
@@ -36,9 +41,5 @@
 h2,ion-card{
   text-align: Left;
   text-transform: capitalize;
-}
-
-ion-card-list{
-  text-align : center;
 }
 
