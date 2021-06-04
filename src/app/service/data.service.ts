@@ -22,7 +22,7 @@ export class DataService {
 
   getAll(){
     return this.http
-    .get("https://pokeapi.co/api/v2/pokemon?limit=151")
+    .get("https://pokeapi.co/api/v2/pokemon?limit=10")
     .pipe(
       map((res:any) =>{
         return res;

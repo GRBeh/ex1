@@ -7,12 +7,12 @@
 </ion-header>
 
 <ion-content id="catalog" [fullscreen]="true">
-  <ion-list *ngFor="let details of detailsList; index as i">
+  <ion-list *ngFor="let details of detailsList ; index as i">
     <ion-item>
       <ion-thumbnail item-start>
         <img src="{{details.sprites.front_default}}">
       </ion-thumbnail>
-      <h2> {{i+1}}/{{detailsList.length}}. {{details.name}}</h2>
+      <h2> {{details.id}}/{{detailsList.length}}. {{details.name}}</h2>
     </ion-item>
 
     <div class='is-grouped'>
