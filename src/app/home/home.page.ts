@@ -1,7 +1,5 @@
-import { Container } from '@angular/compiler/src/i18n/i18n_ast';
-import { Component, OnInit } from '@angular/core';
-import { element } from 'protractor';
-import { DataService } from "../service/data.service"
+import { Component, ComponentFactoryResolver, OnInit } from '@angular/core';
+import { SocialSharing } from '@ionic-native/social-sharing/ngx';
 
 @Component({
   selector: 'app-home',
@@ -9,29 +7,44 @@ import { DataService } from "../service/data.service"
   styleUrls: ['home.page.scss'],
 })
 export class HomePage implements OnInit {
-  detailsList =[]
 
-  constructor(private dataService: DataService) {
-    this.getAll();
-   }
-  ngOnInit() { }
+  detailsList: any 
 
-  getAll(){
-    let promise = new Promise((resolve,reject)=>{
-      this.dataService.getAll().subscribe( item => { 
-        resolve(item)
-      })
-    });   
-    promise.then(res => this.getById(res));
+  constructor(private socialSharing:SocialSharing){
   }
-  
 
-  getById(item){
-    item.results.forEach(pokemon => {
-        this.dataService.getById(pokemon.url).subscribe(details =>{
-        this.detailsList.push(details);
-        });
-    }); 
+  ngOnInit() {
+    this.fetchPokemon();
   }
-  
+
+  shareWhatsapp(value) {
+    this.socialSharing.shareViaWhatsApp(value, null, null);
+  }
+  shareEmail(value) {
+    this.socialSharing.shareViaEmail(value, "Pokeapi", null, null, null, null);
+  }
+  shareTwitter(value) {
+    this.socialSharing.shareViaTwitter(value, null, null);
+  }
+
+  fetchPokemon() {
+    const promises = [];
+    let promise;
+    let idMax = 15;
+    for (let id = 1; id <= idMax; id++) {
+      const url = `https://pokeapi.co/api/v2/pokemon/${id}`;
+      promises.push(fetch(url).then((res) => res.json()));
+    }
+    Promise.all(promises).then((results) => {
+      const pokemon = results.map((result) => ({
+        name: result.name,
+        images: result.sprites['front_default'],
+        moves: result.moves.map((moves) => moves.move.name),
+        type: result.types.map((type) => type.type.name).join(', '),
+        id: result.id
+      }));
+      this.detailsList = pokemon;
+      console.log(this.detailsList)
+    });
+  };
 }
