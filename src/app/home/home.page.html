@@ -9,14 +9,21 @@
       <ion-card  *ngFor="let details of detailsList ; index as i">
         <div class='is-grouped'>
           <input type='button' 
-          value ="share" 
-          (click)="printSkillName(details.name +'\n'+ details.moves)" 
+          value ="share-WA" 
+          (click)="shareWhatsapp(details.name +'\n'+ details.moves)" 
+          > 
+          <input type='button' 
+          value ="share-Twitter" 
+          (click)="shareTwitter(details.name +'\n'+ details.moves)" 
+          > 
+          <input type='button' 
+          value ="share-Email" 
+          (click)="shareEmail(details.name +'\n'+ details.moves)" 
           > 
         </div>
         <div class = "is-centered">
           <img src="{{details.images}}">
         </div>
-        
         <ion-card-header>
           <ion-card-title class = "is-centered">{{details.id}}/{{detailsList.length}}. {{details.name}}</ion-card-title>
           <ion-card-subtitle class = "is-centered">{{details.type}}</ion-card-subtitle>
@@ -25,8 +32,7 @@
           <div class='is-grouped'>
             <input type='button' 
             *ngFor="let move of details.moves; index as i"
-            value ="{{i+1}}. {{move}} " 
-            (click)="printSkillName(details.moves)" 
+            value ="{{i+1}}. {{move}} "
             > 
           </div>
         </ion-card-content>

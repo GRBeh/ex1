@@ -1,8 +1,4 @@
-import { Container } from '@angular/compiler/src/i18n/i18n_ast';
-import { getAllLifecycleHooks } from '@angular/compiler/src/lifecycle_reflector';
 import { Component, ComponentFactoryResolver, OnInit } from '@angular/core';
-import { resolve } from 'dns';
-import { element } from 'protractor'; 
 import { SocialSharing } from '@ionic-native/social-sharing/ngx';
 
 @Component({
@@ -12,35 +8,33 @@ import { SocialSharing } from '@ionic-native/social-sharing/ngx';
 })
 export class HomePage implements OnInit {
 
-  detailsList: any
-  
+  detailsList: any 
 
-  constructor(private socialSharing: SocialSharing) { 
+  constructor(private socialSharing:SocialSharing){
   }
-  
+
   ngOnInit() {
-  this.fetchPokemon();
+    this.fetchPokemon();
   }
 
-  printSkillName(value){
-    console.log(value);
-
-    this.socialSharing.canShareViaEmail().then(() => {
-      console.log("yes");
-    }).catch(() => {
-      console.log("no");
-    });
+  shareWhatsapp(value) {
+    this.socialSharing.shareViaWhatsApp(value, null, null);
+  }
+  shareEmail(value) {
+    this.socialSharing.shareViaEmail(value, "Pokeapi", null, null, null, null);
+  }
+  shareTwitter(value) {
+    this.socialSharing.shareViaTwitter(value, null, null);
   }
 
-
-  fetchPokemon(){
+  fetchPokemon() {
     const promises = [];
     let promise;
-    let idMax = 15; 
-     for (let id = 1; id <= idMax; id++) {
-       const url = `https://pokeapi.co/api/v2/pokemon/${id}`;
-       promises.push(fetch(url).then((res) => res.json()));
-     }
+    let idMax = 15;
+    for (let id = 1; id <= idMax; id++) {
+      const url = `https://pokeapi.co/api/v2/pokemon/${id}`;
+      promises.push(fetch(url).then((res) => res.json()));
+    }
     Promise.all(promises).then((results) => {
       const pokemon = results.map((result) => ({
         name: result.name,
@@ -53,4 +47,4 @@ export class HomePage implements OnInit {
       console.log(this.detailsList)
     });
   };
- }
+}
