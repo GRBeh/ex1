@@ -17,8 +17,13 @@
   display: inline-block;
 }
 
-.is-grouped > .button:not(:last-child) {
-  margin-right: 10px;
+.is-centered{
+  text-align : center;
+}
+
+
+.is-grouped > .button{
+  margin: 2px;
 }
 
 #container p {
