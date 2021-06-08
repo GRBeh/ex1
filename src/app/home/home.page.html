@@ -7,6 +7,12 @@
     </ion-header>,
     <ion-content fullscreen>
       <ion-card  *ngFor="let details of detailsList ; index as i">
+        <div class='is-grouped'>
+          <input type='button' 
+          value ="share" 
+          (click)="printSkillName(details.name +'\n'+ details.moves)" 
+          > 
+        </div>
         <div class = "is-centered">
           <img src="{{details.images}}">
         </div>
@@ -17,9 +23,11 @@
         </ion-card-header>
         <ion-card-content>
           <div class='is-grouped'>
-            <button class='button' *ngFor="let moves of details.moves; index as i"> 
-              {{i+1}}.{{moves.move.name}}
-            </button>
+            <input type='button' 
+            *ngFor="let move of details.moves; index as i"
+            value ="{{i+1}}. {{move}} " 
+            (click)="printSkillName(details.moves)" 
+            > 
           </div>
         </ion-card-content>
       </ion-card>
