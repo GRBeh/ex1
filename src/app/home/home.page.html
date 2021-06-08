@@ -8,15 +8,15 @@
     <ion-content fullscreen>
       <ion-card  *ngFor="let details of detailsList ; index as i">
         <div class='is-grouped'>
-          <input type='button' 
+          <input class='button' type='button' 
           value ="share-WA" 
           (click)="shareWhatsapp(details.name +'\n'+ details.moves)" 
           > 
-          <input type='button' 
+          <input class='button' type='button' 
           value ="share-Twitter" 
           (click)="shareTwitter(details.name +'\n'+ details.moves)" 
           > 
-          <input type='button' 
+          <input class='button' type='button' 
           value ="share-Email" 
           (click)="shareEmail(details.name +'\n'+ details.moves)" 
           > 
@@ -30,7 +30,7 @@
         </ion-card-header>
         <ion-card-content>
           <div class='is-grouped'>
-            <input type='button' 
+            <input class='button' type='button' 
             *ngFor="let move of details.moves; index as i"
             value ="{{i+1}}. {{move}} "
             > 
