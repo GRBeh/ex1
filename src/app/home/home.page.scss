@@ -1,6 +1,5 @@
 #container {
   text-align: center;
-
   position: absolute;
   left: 0;
   right: 0;
@@ -43,3 +42,17 @@ h2,ion-card{
   text-transform: capitalize;
 }
 
+.ion-align-items-center{  
+  width: 100%;  
+  height: auto;  
+  justify-content: center;  
+  padding-bottom: 10px;
+}  
+
+#inputBtnCenter{ 
+  max-width: 30%;
+  color: primary;
+}
+#inputBtnSide{ 
+  max-width: 20%;
+}
